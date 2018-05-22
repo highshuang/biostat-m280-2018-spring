@@ -26,15 +26,15 @@
 
     1, 3) (11/15 pts)
     
-    * Efficiency(8/11pts)
-    Dr. Zhou's implementation for `r = 20` has memory estimate 7.12 MB and allocs estimate 10, while yours is 5.162 GB. There is a lot of room for improving efficiency.
+    **Efficiency(8/11pts)**
+    Dr. Zhou's implementation for `r = 20` has memory estimate 7.12 MB and allocs estimate 10, while yours is `1.60 k allocations: 5.162 GiB, 9.85% gc time`. There is a lot of room for improving efficiency.
     -  Use pre-allocation to save gabbage collection: Dr. Zhou's implement uses half of the memory in pre-allocation. For more details, please check Dr. Zhou's implement(-1 pt)
     -  Don't calculate the same matrix couple times, use pre-allocate array to save middle steps. you calculate `X - A_mul_B!(mul_VW, V, W)` at lease three times in a loop(-2 pts)
        - Use BLAS to reduce memory allocation: Instead of using `X - A_mul_B!(mul_VW, V, W)` in looping, use `LinAlg.BLAS.gemm!('N', 'N', -1.0, V, W, 1.0, X)`. This helps to reduce the memory allocation. 
 
-     * Correctness(4/4 pts)
+     **Correctness(4/4 pts)**
     
-     * Others
+     **Others**
     - Using `vecnorm` instead of `sum(abs2, X - A_mul_B!(mul_VW, V, W))` will speed up your function
     
     4, 5) (3/5pts) You should be able to observe that in part 5 the function ends within 3 iterations; This question is not a convex question, so there is no guarantee for unique result with random initial input matrix. 
@@ -45,14 +45,14 @@
 
     1) (5/5pts) 
     2) (20/20 pts)
-    * Algorithm(7/7pts)
-    * Efficiency(5/7pts)
+    **Algorithm(7/7pts)**
+    **Efficiency(5/7pts)**
     Dr. Zhou's implementation has memory allocation 1.34KB, yours is 5.05KB. Pretty good! Some suggestions:
     - Use `BLAS.syrk!()` to reduce memory allocation in `I + σ1^2 / σ0^2 * Z'Z` and save all symmetric matrix in form symmetric (-1 pts)
     - The extra memory allocation caused by transpose can be avoid by using Blas functions in `I + σ1^2 / σ0^2 * Z'Z` and `Z'y`. (-1 pts)
-    * Correctness(6/6pts)
+    **Correctness(6/6pts)**
 
-    * Others
+    **Others**
     You can check the input to make the function more stable for wrong input.
     
 ### Usage of Git: 10/10
